@@ -6,8 +6,14 @@
     {
         static void Main(string[] args)
         {
-            var filter = args[0];
-            Console.WriteLine($"Listening to: {filter}");
+            Console.WriteLine("Enter Character.");
+
+            var val = Console.ReadKey();
+            var filter = val.KeyChar;
+
+            Console.WriteLine($"{Environment.NewLine}Listening to: {filter}");
+
+            //Listen to Event Grid events
         }
     }
 }

@@ -6,7 +6,16 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Enter Character.");
+            ConsoleKeyInfo val;
+            while ((val = Console.ReadKey()) != null)
+            {
+                Console.WriteLine($"{Environment.NewLine}Sending '{val.KeyChar}' to Event Grid.");
+
+                //Pass Event to Grid
+
+                Console.WriteLine("Enter new character.");
+            }
         }
     }
 }
