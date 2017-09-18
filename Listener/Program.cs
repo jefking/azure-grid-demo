@@ -1,12 +1,13 @@
-﻿using System;
-
-namespace Listener
+﻿namespace EventGrid.Listener
 {
-    class Program
+    using System;
+
+    public class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var filter = args[0];
+            Console.WriteLine($"Listening to: {filter}");
         }
     }
 }

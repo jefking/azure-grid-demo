@@ -1,8 +1,8 @@
-﻿using System;
-
-namespace Writer
+﻿namespace EventGrid.Writer
 {
-    class Program
+    using System;
+
+    public class Program
     {
         static void Main(string[] args)
         {
