@@ -8,6 +8,7 @@
         {
             Console.WriteLine("Enter Character.");
             ConsoleKeyInfo val;
+
             while ((val = Console.ReadKey()) != null)
             {
                 Console.WriteLine($"{Environment.NewLine}Sending '{val.KeyChar}' to Event Grid.");
