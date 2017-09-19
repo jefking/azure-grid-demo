@@ -9,7 +9,7 @@ https://requestb.in/
 
 --4. Subscribe to Events
 az eventgrid topic event-subscription create --name watching \
-  --endpoint https://requestb.in/1ae891j1 \
+  --endpoint https://requestb.in/<ENTER> \
   -g vademo \
   --topic-name vanazure
 
