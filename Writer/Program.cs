@@ -3,33 +3,34 @@
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
     using System;
+    using System.Net.Http;
+    using System.Text;
 
     public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Console.WriteLine("Enter Character.");
-            ConsoleKeyInfo val;
+            var uri = "https://vanazure.westus2-1.eventgrid.azure.net/api/events";
+            var key = "CMSK2KX2F+Ork15T/cXDOGQ87e6G+2ewidGue+YfIxM=";
 
-            while ((val = Console.ReadKey()) != null)
+            var data = new DisplayData
             {
-                Console.WriteLine($"{Environment.NewLine}Sending '{val.KeyChar}' to Event Grid.");
+                Topic = "/subscriptions/15be36e2-6246-4377-b9ab-b4b90362cd07/resourceGroups/vademo/providers/microsoft.eventgrid/topics/vanazure",
+                Subject = "echo/hello/van/azure",
+                Data = "{\"raw\":\"f456d7s8iuyhgvrt5ghwjuiqsudfygtfydeuwjhnb\"}"
+            };
 
-                var evnt = new CharacterEvent
-                {
-                    Topic = "console/msg/pump",
-                    Subject = "",
-                    Data = new JObject(val),
-                };
+            var json = JsonConvert.SerializeObject(data);
 
-                //Pass Event to Grid
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Add("aeg-sas-key", key);
+            client.PostAsync(uri, new StringContent(json, Encoding.UTF8, "application/json"));
 
-                Console.WriteLine("Enter new character.");
-            }
+            Console.WriteLine("Refresh Paste Bin like a boss!");
         }
     }
 
-    public class CharacterEvent
+    public class DisplayData
     {
         [JsonProperty(PropertyName = "topic")]
         public string Topic { get; set; }
@@ -38,6 +39,6 @@
         public string Subject { get; set; }
 
         [JsonProperty(PropertyName = "data")]
-        public JObject Data { get; set; }
+        public string Data { get; set; }
     }
 }
